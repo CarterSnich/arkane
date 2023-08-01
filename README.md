@@ -1,5 +1,7 @@
 # arkane
 
+![logo](src/arkane.svg)
+
 A Markdown-based note-taking app written with Tauri + Vue.
 
 ## Setup
@@ -22,8 +24,6 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 MIT
 
 ## Logo
-
-![logo](src/arkane.svg)
 
 A simple logo created from random points using Figma. Pointy, just to make it look cool.
 
