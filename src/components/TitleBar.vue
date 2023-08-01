@@ -1,29 +1,46 @@
 <script setup lang="ts">
-	import { ref } from "vue";
+	import { onMounted, ref } from "vue";
 	import { appWindow } from "@tauri-apps/api/window";
+	import { getName } from "@tauri-apps/api/app";
+	import arkaneLogo from "../arkane.svg";
 
-	const title = ref("notedown");
+	const title = ref("");
 
-	const minimize = async () => await appWindow.minimize();
+	onMounted(async () => {
+		title.value = await getName();
+	});
 </script>
 
 <template>
-	<div class="container">
-		<h1>{{ title }}</h1>
+	<div id="TitleBar">
+		<img data-tauri-drag-region :src="arkaneLogo" />
+
+		<h1 data-tauri-drag-region>{{ title }}</h1>
 
 		<div id="win-btns">
-			<button id="win-btn-1" @click="minimize">_</button>
-			<button id="win-btn-2">[ ]</button>
-			<button id="win-btn-3">x</button>
+			<button id="win-btn-1" @click="appWindow.minimize">_</button>
+			<button id="win-btn-2" @click="appWindow.toggleMaximize">[ ]</button>
+			<button id="win-btn-3" @click="appWindow.close">x</button>
 		</div>
 	</div>
 </template>
 
 <style scoped>
-	.container {
+	#TitleBar {
 		display: flex;
 		flex-direction: row;
 		border-bottom: 1px solid grey;
+
+		position: relative;
+	}
+
+	img {
+		position: absolute;
+		height: 24px;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 0.25rem;
+		filter: drop-shadow(0px 0px 2px black);
 	}
 
 	h1 {
@@ -33,6 +50,16 @@
 		font-weight: normal;
 		align-self: center;
 		text-align: center;
+
+		display: grid;
+		place-content: center;
+		height: 100%;
+	}
+
+	#win-btns {
+		position: absolute;
+		right: 0;
+		height: 100%;
 	}
 
 	#win-btns > button {

@@ -4,9 +4,6 @@
 	line-height: 24px;
 	font-weight: 400;
 
-	color: #0f0f0f;
-	background-color: #f6f6f6;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -22,4 +19,34 @@
 body {
 	margin: 0;
 	padding: 0;
+	user-select: none; /* Standard syntax */
+}
+
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+input,
+button,
+textarea,
+:focus {
+	outline: none; /* You should add some other style for :focus to help UX/a11y */
+}
+
+a:not([draggable="true"]),
+img:not([draggable="true"]) {
+	-webkit-user-drag: none;
+	user-drag: none; /* Technically not supported in Electron yet */
+}
+
+a[href^="http://"],
+a[href^="https://"],
+a[href^="ftp://"]
+{
+	-webkit-user-drag: auto;
+	user-drag: auto; /* Technically not supported in Electron yet */
 }
