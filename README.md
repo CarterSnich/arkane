@@ -6,6 +6,8 @@ A Markdown-based note-taking app written with Tauri + Vue.
 
 ## Roadmap
 
+The app is pretty much working now; add new note, live saving content, delete app. Notes can be found in `Documents > arkane`.
+
 - [ ] First release (at least build an AppImage)
 - [ ] Allow image on preview
 - [ ] Mobile (can I? Does Tauri can?)
@@ -13,7 +15,9 @@ A Markdown-based note-taking app written with Tauri + Vue.
 - [ ] Add spellchecker toggle on the editor toolbar
 - [ ] Refactor disgusting codes
 
-## Development
+## Contributing
+
+I'm an amateur web developer, comments or code for improvements are highly appreciated!
 
 ### Recommended tools
 
