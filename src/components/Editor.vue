@@ -5,7 +5,6 @@
 	import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 	import { watch as fsWatch } from "tauri-plugin-fs-watch-api";
 	import { UnlistenFn } from "@tauri-apps/api/event";
-	import { confirm } from "@tauri-apps/api/dialog";
 
 	let easyMDE: EasyMDE | undefined;
 	let stopSaveTimeout: number | null = null;

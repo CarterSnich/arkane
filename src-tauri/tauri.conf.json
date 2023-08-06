@@ -32,9 +32,6 @@
 			"fs": {
 				"all": true,
 				"scope": ["$HOME/Documents/arkane/", "$HOME/Documents/arkane/*"]
-			},
-			"dialog": {
-				"confirm": true
 			}
 		},
 		"bundle": {
