@@ -1,10 +1,19 @@
 # arkane
 
-![logo](src/arkane.svg)
+![screenshot](screenshot.png)
 
 A Markdown-based note-taking app written with Tauri + Vue.
 
-## Setup
+## Roadmap
+
+- [ ] First release (at least build an AppImage)
+- [ ] Allow image on preview
+- [ ] Mobile (can I? Does Tauri can?)
+- [ ] Renaming notes
+- [ ] Add spellchecker toggle on the editor toolbar
+- [ ] Refactor disgusting codes
+
+## Development
 
 ### Recommended tools
 
