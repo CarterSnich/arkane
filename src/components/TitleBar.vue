@@ -1,26 +1,20 @@
 <script setup lang="ts">
-	import { onMounted, ref } from "vue";
 	import { appWindow } from "@tauri-apps/api/window";
-	import { getName } from "@tauri-apps/api/app";
-	import arkaneLogo from "../arkane.svg";
-
-	const title = ref("");
-
-	onMounted(async () => {
-		title.value = await getName();
-	});
+	import arkaneIcon from "../arkane.svg";
+	import { store } from "../store";
 </script>
 
 <template>
 	<div id="TitleBar">
-		<img data-tauri-drag-region :src="arkaneLogo" />
-
-		<h1 data-tauri-drag-region>{{ title }}</h1>
-
+		<img id="win-icon" data-tauri-drag-region :src="arkaneIcon" />
+		<h1 id="win-title" data-tauri-drag-region>
+			{{ store.currentNote || "arkane" }}
+		</h1>
 		<div id="win-btns">
-			<button id="win-btn-1" @click="appWindow.minimize">_</button>
-			<button id="win-btn-2" @click="appWindow.toggleMaximize">[ ]</button>
-			<button id="win-btn-3" @click="appWindow.close">x</button>
+			<button class="custom-btn">🌙</button>
+			<button class="custom-btn" @click="appWindow.minimize">_</button>
+			<button class="custom-btn" @click="appWindow.toggleMaximize">[ ]</button>
+			<button class="custom-btn" @click="appWindow.close">&Cross;</button>
 		</div>
 	</div>
 </template>
@@ -34,7 +28,7 @@
 		position: relative;
 	}
 
-	img {
+	#win-icon {
 		position: absolute;
 		height: 24px;
 		top: 50%;
@@ -43,7 +37,7 @@
 		filter: drop-shadow(0px 0px 2px black);
 	}
 
-	h1 {
+	#win-title {
 		flex-grow: 1;
 		font-size: 16px;
 		margin: 0;
@@ -63,7 +57,9 @@
 	}
 
 	#win-btns > button {
+		color: inherit;
 		font-family: monospace;
+		white-space: nowrap;
 		height: 100%;
 		width: 42px;
 		border: 0;
@@ -71,13 +67,12 @@
 		transition: all 0.3s ease-in-out;
 	}
 
-	#win-btn-1:hover,
-	#win-btn-2:hover {
+	#win-btns > button:hover {
 		filter: brightness(80%);
-		background-color: grey;
+		background-color: var(--button-hover);
 	}
 
-	#win-btn-3:hover {
+	#win-btns > button:last-child:hover {
 		background-color: red !important;
 		filter: brightness(80%);
 	}

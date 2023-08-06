@@ -1,44 +1,37 @@
 <script setup lang="ts">
 	import Editor from "./Editor.vue";
-	import { onMounted } from "vue";
-	import Note from "../Note";
+	import { store } from "../store";
 
-	const props = defineProps<{
-		notes: Note[];
-		currentEditingFile: () => Note | null;
-	}>();
-
-	onMounted(() => {
-		const editorTabs: Element | null = document.getElementById("editor-tabs");
-
-		editorTabs?.addEventListener("wheel", (event) => {
-			event.preventDefault();
-			editorTabs.scrollLeft += (event as WheelEvent).deltaY;
-		});
-	});
-
-	const { notes, currentEditingFile } = props;
+	const haikus = [
+		"Open a note or create a new note",
+		"In the notebook's realm, open a page or birth a tale anew",
+		"Amidst blank pages, whispers of wisdom await their birth",
+		"A note's embrace holds seeds of thoughts, ready to bloom",
+		"Through ink's dance, ideas take flight and dreams unfurl",
+		"Inscribing words, a symphony of thoughts finds harmony",
+		"In parchment's embrace, tales and musings find their home",
+		"An empty note, a canvas for the soul's masterpiece",
+		"Within the pages lie keys to unlock hidden truths",
+		"A single note, a ripple in the vast ocean of knowledge",
+		"With pen in hand, the journey of creation begins",
+		"In the stillness of paper, whispers of inspiration arise",
+		"In notes, memories are etched, a timeless legacy",
+		"In the universe of thoughts, a note is a guiding star",
+		"Within the lines, untold stories find their voice",
+		"From the heart's inkwell, emotions paint their portrait",
+		"In a note's grace, the present immortalizes itself",
+		"Through words, a note becomes a vessel of introspection",
+		"Each note a lantern, illuminating the path ahead",
+		"In a world of notes, curiosity finds its compass",
+		"Through the pen's dance, life's tapestry takes shape",
+	];
 </script>
 
 <template>
 	<div id="EditorArea">
-		<nav id="editor-tabs-wrapper">
-			<ul id="editor-tabs">
-				<li
-					v-for="note in notes.filter((notes) => notes.isOpen)"
-					:class="{ 'is-current-editing': note.id == currentEditingFile().id }"
-				>
-					<span>{{ note.filename }}</span>
-					<button @click="note.isOpen = false">x</button>
-				</li>
-			</ul>
-		</nav>
-		<div id="editor-wrapper">
-			<Editor
-				v-if="currentEditingFile() != null"
-				:note="(currentEditingFile() as Note)"
-			/>
-			<div v-else id="empty-editor">Open a file</div>
+		<Editor v-if="store.currentNote" />
+		<div id="empty-editor" v-else>
+			{{ haikus[Math.floor(Math.random() * haikus.length)] }}
 		</div>
 	</div>
 </template>
@@ -46,68 +39,14 @@
 <style scoped>
 	#EditorArea {
 		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-	}
-
-	#editor-tabs {
-		display: flex;
-		flex-wrap: nowrap;
-
-		min-height: 32px;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		border-bottom: 1px solid grey;
-		margin-bottom: -1px;
-		margin-right: -1px;
-		overflow-x: auto;
-		scroll-behavior: smooth;
-	}
-
-	#editor-tabs::-webkit-scrollbar {
-		width: 0;
-		height: 0;
-	}
-
-	#editor-tabs > li {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-
-		min-width: 180px;
-		padding: 0.25rem;
-		border-width: 0px 1px 1px 0px;
-		border-style: solid;
-		border-color: grey;
-		color: inherit;
-		text-decoration: none;
-		border-bottom: 1px;
-	}
-
-	#editor-tabs > li > button {
-		display: none;
-		background-color: transparent;
-		border: none;
-	}
-
-	#editor-tabs > li.is-current-editing > button {
-		display: unset;
-	}
-
-	#editor-tabs > li > button:hover {
-		text-shadow: 0px 0px 4px grey;
-	}
-
-	#editor-wrapper {
-		height: 100%;
-		overflow: hidden;
 	}
 
 	#empty-editor {
 		display: grid;
 		place-content: center;
 		height: 100%;
+		position: relative;
+		text-align: center;
+		padding: 3.25rem;
 	}
 </style>

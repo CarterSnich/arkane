@@ -18,40 +18,23 @@
 				"open": true
 			},
 			"window": {
-				"all": false,
-				"center": false,
 				"close": true,
-				"create": false,
-				"hide": false,
 				"maximize": true,
 				"minimize": true,
-				"print": false,
-				"requestUserAttention": false,
-				"setAlwaysOnTop": false,
-				"setClosable": false,
-				"setContentProtected": false,
-				"setCursorGrab": false,
-				"setCursorIcon": false,
-				"setCursorPosition": false,
-				"setCursorVisible": false,
-				"setDecorations": false,
-				"setFocus": false,
-				"setFullscreen": false,
-				"setIcon": false,
-				"setIgnoreCursorEvents": false,
-				"setMaxSize": false,
-				"setMaximizable": false,
-				"setMinSize": false,
-				"setMinimizable": false,
-				"setPosition": false,
-				"setResizable": false,
-				"setSize": false,
-				"setSkipTaskbar": false,
-				"setTitle": false,
-				"show": false,
+				"setTitle": true,
 				"startDragging": true,
 				"unmaximize": true,
 				"unminimize": true
+			},
+			"path": {
+				"all": true
+			},
+			"fs": {
+				"all": true,
+				"scope": ["$HOME/Documents/arkane/", "$HOME/Documents/arkane/*"]
+			},
+			"dialog": {
+				"confirm": true
 			}
 		},
 		"bundle": {

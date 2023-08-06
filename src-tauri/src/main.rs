@@ -2,14 +2,11 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn on_start() -> String {
-    "hello".into()
-}
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![on_start])
+        .plugin(tauri_plugin_window_state::Builder::default().build())
+        .plugin(tauri_plugin_fs_watch::init())
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
